@@ -1,15 +1,11 @@
-// src/controllers/userController.ts
 import { Request, Response } from "express";
 import {
   getEngagedUsersRanking,
   getEngagementMetrics,
   getUserInfo,
   processWebhookForUser,
-} from "../services/userServices";
+} from "../services/userService";
 
-/**
- * Processa o webhook para o usuário, registrando a leitura e atualizando o streak.
- */
 export const handleWebhook = async (
   req: Request,
   res: Response
@@ -24,7 +20,6 @@ export const handleWebhook = async (
   } = req.body;
 
   try {
-    // Chama o serviço para processar a leitura do usuário
     const user = await processWebhookForUser({
       email,
       resourceId,
@@ -34,7 +29,6 @@ export const handleWebhook = async (
       utm_channel,
     });
 
-    // Retorna as informações do usuário atualizadas
     return res.status(200).json({
       message: "Webhook processado com sucesso!",
       user,
@@ -45,19 +39,18 @@ export const handleWebhook = async (
   }
 };
 
-/**
- * Recupera as informações do usuário (streak, histórico de aberturas).
- */
 export const getUserStatistics = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const { email } = req.params;
+  const email = req.query.email as string;
+
+  if (!email) {
+    return res.status(400).json({ message: "Email é obrigatório" });
+  }
 
   try {
-    // Chama o serviço para obter as informações do usuário
     const user = await getUserInfo(email);
-
     return res.status(200).json({
       message: "Informações do usuário recuperadas com sucesso.",
       user,
@@ -70,15 +63,11 @@ export const getUserStatistics = async (
   }
 };
 
-/**
- * Recupera as métricas gerais de engajamento (total de usuários e leituras).
- */
 export const getEngagementMetricsController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
   try {
-    // Chama o serviço para obter as métricas de engajamento
     const metrics = await getEngagementMetrics();
 
     return res.status(200).json({
@@ -93,15 +82,11 @@ export const getEngagementMetricsController = async (
   }
 };
 
-/**
- * Recupera o ranking dos leitores mais engajados (maior streak).
- */
 export const getEngagedUsersRankingController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
   try {
-    // Chama o serviço para obter o ranking de usuários engajados
     const ranking = await getEngagedUsersRanking();
 
     return res.status(200).json({

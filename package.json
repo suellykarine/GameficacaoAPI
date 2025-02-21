@@ -1,28 +1,33 @@
 {
-  "name": "the-news-game",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "start": "node dist/index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@prisma/client": "^6.3.1",
-    "axios": "^1.7.9",
-    "express": "^4.21.2",
-    "prisma": "^6.3.1",
-    "sequelize": "^6.37.5",
-    "sqlite3": "^5.1.7"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.0",
-    "@types/node": "^22.13.4",
-    "body-parser": "^1.20.3",
-    "typescript": "^5.7.3"
-  }
+    "name": "the-news-game",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "generate:migration": "drizzle-kit generate",
+        "migrate": "drizzle-kit up"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@libsql/client": "^0.14.0",
+        "axios": "^1.7.9",
+        "better-sqlite3": "^11.8.1",
+        "drizzle-orm": "^0.39.3",
+        "express": "^4.21.2",
+        "sequelize": "^6.37.5",
+        "sqlite3": "^5.1.7"
+    },
+    "devDependencies": {
+        "@types/better-sqlite3": "^7.6.12",
+        "@types/express": "^4.17.0",
+        "@types/node": "^22.13.4",
+        "body-parser": "^1.20.3",
+        "drizzle-kit": "^0.19.13",
+        "typescript": "^5.7.3"
+    }
 }

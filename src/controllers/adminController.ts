@@ -1,10 +1,6 @@
-// src/controllers/adminController.ts
 import { Request, Response } from "express";
-import { getAdminMetrics } from "../services/adminServices";
+import { getAdminMetrics } from "../services/adminService";
 
-/**
- * Controller para retornar métricas administrativas e ranking dos usuários.
- */
 export const getMetrics = async (
   req: Request,
   res: Response
