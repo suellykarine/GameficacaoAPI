@@ -25,6 +25,6 @@ npm (gerenciador de pacotes do Node.js).
 
 #### Passos para rodar o projeto
 
-- Clone do repositório : git clone <url-do-repositorio>
+- Clone do repositório : git clone https://github.com/suellykarine/GameficacaoAPI
 - Instale as dependencias: npm install
 - Inicie o servidor: npm start: A API ficará acessível na URL http://localhost:3001 (ou na porta configurada no seu projeto).
